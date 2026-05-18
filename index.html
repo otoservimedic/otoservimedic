@@ -627,11 +627,11 @@ footer{background:#0D1B3E;padding:48px 0 24px;}
         <h1>¿Problemas de <em>oído, nariz</em> o garganta?</h1>
         <p class="hero-desc">Centro especializado en otorrinolaringología. Diagnóstico preciso, procedimientos en consultorio y atención para toda la familia.</p>
         <div class="hero-price-badge">
-          <div><div class="price-tag"><sub>s/</sub>75</div></div>
+          <div><div class="price-tag"><sub>s/</sub>80</div></div>
           <div class="price-info">Consulta +<br>Diagnóstico</div>
           <div style="width:1px;background:var(--border);height:32px;margin:0 4px;"></div>
-          <div><div class="price-tag"><sub>s/</sub>89</div></div>
-          <div class="price-info">Consulta +<br>Lavado oído</div>
+          <div><div class="price-tag"><sub>s/</sub>120</div></div>
+          <div class="price-info">Consulta +<br>Lavado de Oídos</div>
         </div>
         <div class="hero-ctas">
           <a href="https://wa.me/51930756294?text=¡Hola%2C%20quisiera%20atenderme%20en%20OtoServiMedic!%20Me%20brinda%20más%20información" class="btn-primary">Reservar cita ahora</a>
@@ -685,7 +685,7 @@ footer{background:#0D1B3E;padding:48px 0 24px;}
 <div class="stats-bar">
   <div class="stats-bar-inner">
     <div class="stat-cell"><div class="num">+5K</div><div class="lbl">Pacientes atendidos</div></div>
-    <div class="stat-cell"><div class="num">s/75</div><div class="lbl">Consulta + diagnóstico</div></div>
+    <div class="stat-cell"><div class="num">s/80</div><div class="lbl">Consulta + diagnóstico</div></div>
     <div class="stat-cell"><div class="num">+10</div><div class="lbl">Procedimientos en consultorio</div></div>
     <div class="stat-cell"><div class="num">100%</div><div class="lbl">Especialistas certificados</div></div>
   </div>
@@ -2431,14 +2431,24 @@ adminOverlay.onclick = (e) => {
   }
 };
 
-// Activar panel con Ctrl+Shift+A (con autenticación)
+// Activar panel con Ctrl+Shift+P (con autenticación)
 document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+  if (e.ctrlKey && e.shiftKey && e.key === 'P') {
     e.preventDefault();
+    // Mostrar botón si no está visible
     if (!adminToggle.classList.contains('visible')) {
       adminToggle.classList.add('visible');
-      showToast('✓ Panel activado - Haz clic en ⚙ para entrar');
     }
+    // Abrir el panel directamente
+    if (!adminOverlay.classList.contains('open')) {
+      adminOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  // Cerrar panel con ESC
+  if (e.key === 'Escape' && adminOverlay.classList.contains('open')) {
+    adminOverlay.classList.remove('open');
+    document.body.style.overflow = '';
   }
 });
 
